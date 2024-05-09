@@ -1,0 +1,339 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Sign Up{% endblock %}
+    
+
+{% block styles %}
+<style>
+    .login{
+        height: 100vh;
+        background-color: #EDFAF6;
+    }
+    
+    .login .details{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        /* margin-left: 25px; */
+        margin-right: 25px;
+        background-color: #FFFFFF;
+    }
+    
+    .login .top{
+        font-weight: 600;
+        font-size: 18px;
+        color: #191F26;
+    }
+    
+    .login .comment{
+        font-weight: 400;
+        font-size: 12px;
+        color: #9095A9;
+    }
+    
+    .form-control:focus {
+        border-color: #EEF2F5;
+        box-shadow: none;
+        outline: none;
+        /* padding: 12px 16px 12px 16px; */
+    }
+    
+    .login form label{
+        font-size: 12px;
+        font-weight: 600;
+        color: #191F26;
+        padding: 12px 16px 12px 16px;
+    }
+    
+    .login form input{
+        padding: 12px 16px 12px 16px;
+        height: 39px;
+        border-radius: 7px;
+    }
+    
+    .login .btn{
+        width: 314px;
+        height: 44px;
+        border-radius: 7px;
+    }
+    
+    .login .end a{
+        text-decoration: none;
+        color: #00B67A;
+        font-weight: 400;
+        font-size: 14px;
+    }
+    
+    .login .submit a{
+        text-decoration: none;
+        color: #FFFFFF;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    
+    .connect{
+        background-color: #EDFAF6;
+    
+    }
+    
+    .connect p{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        /* margin: 10px; */
+        font-size: 68px;
+        font-weight: 700;
+        line-height: 81.6px;
+        color: #00B67A;
+        margin-right: 45px;
+        margin-bottom: 45px;
+    }
+    
+    .login .checkbox-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .login .service a{
+        color: #00B67A;
+    }
+    .popup-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9998; /* Lower z-index than the popup */
+      }
+      .popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+      }
+    
+    .popup-container h2{
+        font-weight: 700;
+        text-align:center;
+        font-size: 24px;
+    }
+    .popup-container p{
+        /* font-weight: 500; */
+        text-align:center;
+    }
+    .popup-container button{
+        justify-content: center;
+        padding: 5px 20px;
+        border: 5px #00B67A;
+    }
+    form{
+        position: relative;
+    }
+    .form-group .hide{
+        position: absolute;
+        top: 40.5%;
+        right: 0.5rem;
+    }
+    .form-group .hide .fa-eye{
+        display: none;
+    }
+    .form-group .hide.display .fa-eye{
+        display: block;
+    }
+    .form-group .hide.display .fa-eye-slash{
+        display: none;
+    }
+    .form-group .hideme{
+        position: absolute;
+        top: 55.5%;
+        right: 0.5rem;
+    }
+    .form-group .hideme .fa-eye{
+        display: none;
+    }
+    .form-group .hideme.display .fa-eye{
+        display: block;
+    }
+    .form-group .hideme.display .fa-eye-slash{
+        display: none;
+    }
+    
+    .form-group .hide{
+        position: absolute;
+        /* top: 50%; */
+        /* right: 0.5rem; */
+    }
+    .form-group .hide .fa-eye{
+        display: none;
+    }
+    .form-group .hide.display .fa-eye{
+        display: block;
+    }
+    .form-group .hide.display .fa-eye-slash{
+        display: none;
+    }
+</style>
+{% endblock  %}
+    
+
+{% block content %}
+<section class="login container-fluid">
+    <div class="row">
+        <div class="col-12 col-xl-5 col-xs-6 details py-3 px-5">
+            <div>
+                <div class="top"><p>Sign up as a Client</p></div>
+            <div class="comment"><p>Let’s enter your data to continue to use service connect</p></div>
+            <div class="container">
+                {% if error_message %}
+                <div class="alert alert-danger" role="alert">{{ error_message }}</div>
+                {% endif %}
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Username</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="e.g, Charles" name="username">
+                    </div>                    
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Email</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@email.com" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlPassword1">Password</label>
+                        <input type="password" class="form-control inputag" id="exampleFormControlPassword1" placeholder="*********" name="password1">
+                        <div class="hide">
+                            <i class="fa-solid fa-eye-slash text-success"></i>
+                            <i class="fa-solid fa-eye text-success"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlPassword1">Confirm Password</label>
+                        <input type="password" class="form-control input1" id="exampleFormControlPassword2" placeholder="*********" name="password2">
+                        <div class="hideme">
+                            <i class="fa-solid fa-eye-slash text-success"></i>
+                            <i class="fa-solid fa-eye text-success"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-12 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <input type="checkbox" name="terms" id="terms" required>
+                            </div>
+                            <div class="col-12 col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-8">
+                                <label for="exampleFormControlPassword1">I Agree to the <a href="#" class="text-success" id="termsLink">Terms and Conditions</a></label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success mt-2">Sign Up</button>
+                    <div class="text-center end"><p>Already have an account? <span class="text-success"><a href="login">Log in</a></span></p></div>
+                    <div class="text-center service"><p>or</p>
+                        <a href="{% url 'onboarding' %}"><strong>Become a Service Provider</strong></a>
+                    </div>
+                </form>
+            </div>
+            </div>
+            
+
+        </div>
+
+
+        <div class="col-12 col-xl-7 col-xs-6 connect">
+            <div><a href="{% url 'index' %}"><p>Service<br>Connect</p></a></div>
+        </div>
+    </div>
+</section>
+
+<!-- Popup content -->
+<div class="popup-container py-3 px-3" id="popupContainer">
+    <div class="popup" id="termsPopup">
+      <h2>Terms and Conditions</h2>
+      <strong>Acceptance of Terms:</strong> By using our services, you agree to abide by these terms and conditions.<br>
+  
+          <strong>Description of Services:</strong>  Service Connect provides the access to variety of service providers to the reach of customers. <br>
+          
+          <strong>User Responsibilities:</strong>  You agree to use our services responsibly and comply with all applicable laws. <br>
+          
+          <strong>Intellectual Property:</strong>  All content provided by Service Connect is protected by intellectual property laws. <br>
+          
+          <strong>Privacy Policy:</strong>  Your use of our services is subject to our Privacy Policy. <br>
+          
+          <strong>Limitation of Liability:</strong>  Service Connect is not liable for any damages resulting from the use of our services. <br>
+                  
+          <strong>Modifications to Terms:</strong>  Service Connect may update these terms and conditions at any time without notice. <br>
+                  
+          <strong>Contact Information:</strong>  If you have any questions, contact us at <a href="mailto:christopheramah1@gmail.com">christopheramah1@gmail.com</a>. <br>
+      <button id="closePopup" class="mt-3">Close</button>
+    </div>
+  </div>
+  
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Get the terms link and popup
+    const termsLink = document.getElementById("termsLink");
+    const termsPopup = document.getElementById("termsPopup");
+    const closePopup = document.getElementById("closePopup");
+    const popupContainer = document.getElementById("popupContainer");
+  
+    // Function to show the popup
+    function showPopup() {
+      popupContainer.style.display = "block";
+    }
+  
+    // Function to close the popup
+    function closePopupFunction() {
+      popupContainer.style.display = "none";
+    }
+  
+    // Event listener for the terms link
+    termsLink.addEventListener("click", function(event) {
+      event.preventDefault(); // Prevent the default link behavior
+      showPopup();
+    });
+  
+    // Event listener for closing the popup
+    closePopup.addEventListener("click", closePopupFunction);
+  
+    // Close popup when clicking outside the popup
+    popupContainer.addEventListener("click", function(event) {
+      if (event.target === popupContainer) {
+        closePopupFunction();
+      }
+    });
+  });
+
+  let inputag = document.querySelector('.inputag');
+    let hide = document.querySelector('.hide');
+    
+    
+    hide.addEventListener('click', ()=>{
+        hide.classList.toggle('display')
+        if(inputag.type=='password'){
+        inputag.type= 'text'
+    }else{
+        inputag.type='password'
+    }
+    })
+
+    let input1 = document.querySelector('.input1');
+    let hideme = document.querySelector('.hideme');
+
+
+    hideme.addEventListener('click', ()=>{
+       hideme.classList.toggle('display')
+       if(inputag.type=='password'){
+       input1.type= 'text'
+    }else{
+       input1.type='password'
+    }
+    })
+  </script>
+
+{% endblock %}

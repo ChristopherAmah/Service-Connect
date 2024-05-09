@@ -1,0 +1,742 @@
+{% extends 'base.html' %}
+
+{% block title %} {{cat_title.cat_name|title}} {% endblock title %}
+
+{% block styles %}
+<style>
+    *{
+      margin: 0;
+      padding: 0;
+  }
+
+  /* navbar */
+  .connect{
+      background-color: #00B67A;
+      height: 72px;
+      padding: 17px 50px 17px 50px;
+      gap: 1278px;
+  }
+
+  .connect .navbar-brand{
+      font-weight: 700;
+      size: 28px;
+      color: #ffffff;
+      line-height: 33.6px;
+  }
+
+  .connect .nav-item{
+      font-weight: 700;
+      line-height: 17.6px;
+      color: #00B67A;
+      background: #ffffff;
+      letter-spacing: -0.17px;
+  }
+  .connect .nav-item:hover{
+      font-weight: 700;
+      line-height: 17.6px;
+      color: #ffffff;
+      background: #ffffff;
+      letter-spacing: -0.17px;
+  }
+
+  .connect .nav-link{
+      font-weight: 700;
+      line-height: 17.6px;
+      color: #ffffff;
+      letter-spacing: -0.17px;
+  }
+  .connect .nav-link:hover{
+      font-weight: 700;
+      line-height: 17.6px;
+      color: #ffffff;
+      background: #00b6793b;
+      letter-spacing: -0.17px;
+  }
+  .connect .navbar-nav a{
+      text-decoration: none;
+      color: #ffffff;
+  }
+
+
+  /* showcase */
+  .showcase .carousel-caption h5{
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 40px;
+  }
+  .showcase .carousel-caption p{
+      color: #ffffff;
+      font-weight: 500;
+  }
+
+  /* header */
+  .header{
+      height: 530px;
+      background-color:#EDFAF6;
+      overflow: hidden;
+  }
+
+  .header .row{
+      height: 271px;
+  }
+
+  .header .row h3{
+      font-weight: 700;
+  }
+
+  .header .background-image {
+      position: relative;
+      width: 700px;
+      height: 367.05px;
+      top: 73px;
+      background: #D9D9D9;
+  }
+
+  .header .review-card {
+      position: absolute;
+      background-color: #ffffff;
+      width: 199px;
+      height: 143px;
+      border: 1px #A9BAB5;
+  }
+
+  .header .review-card img {
+      width: 21.75px;
+      height: 21.75px;
+      top: 16.31px;
+      left: 13.05px;
+      border-radius: 50%;
+  }
+
+  .header .review-card-name {
+      position: absolute;
+      height: 6.49px;
+      top: 18.37px;
+      left: 43.64px;
+      color: #233300;
+      font-size: 10px; /* Adjust font size as needed */
+      font-weight: 700;
+  }
+
+  .header .review-card-date {
+      position: absolute;
+      height: 4.75px;
+      top: 30.41px;
+      left: 43.28px;
+      color: #C3C9B7;
+      font-size: 8px; /* Adjust font size as needed */
+  }
+
+  .header .review-card-company {
+      position: absolute;
+      height: 8.44px;
+      top: 51.61px;
+      left: 13.45px;
+      color: #233300;
+      font-weight: 700; /* Adjust font size as needed */
+  }
+
+  .header .review-card p{
+      position: absolute;
+      width: 170.3px;
+      height: 36.63px;
+      font-size: 10px;
+      top: 88.97px;
+      left: 13.4px;
+      color: #233300;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+      line-height: 1.5; /* Adjust as needed */
+  }
+
+  .header .review-card-content {
+      padding: 10px;
+  }
+
+  .header .review-card:nth-child(1) {
+      top: 22px;
+      left: 299px;
+  }
+
+  .header .review-card:nth-child(2) {
+      top: 437px;
+      left: 600px;
+      /* bottom right */
+  }
+
+  .header .review-card:nth-child(3) {
+      top: 243px;
+      left: 10px;
+      /* top left */
+  }
+
+  .header .review-card:nth-child(4) {
+      top: 110px;
+      left: 600px;
+      /* top right */
+  }
+
+  .header .card{
+      width: 491px;
+      height: 271px;
+      top: 126.5px;
+      left: 110px;
+      background: none;
+      border: none;
+  }
+  .header .card-footer{
+      border: none;
+      background: none;
+  }
+  .header .card h2{
+      font-weight: 700;
+      size: 48px;
+      color: #05442E;
+  }
+  .header .card p{
+      font-weight: 500;
+      size: 14px;
+      color: #05442E;
+  }
+
+  /* categories */
+  .categories .row figure {
+      border: 1px solid;
+      padding: 40px 60px 40px 60px;
+      color: #000000;
+      font-weight: 700;
+      line-height: 22.63px;
+      background: #ffffff;
+      transition: background 1s ease;
+    }
+    
+    .categories .row figure:hover {
+      background: #EDFAF6;
+      cursor: pointer;
+  }
+    /* Styling for the container */
+    .categories .container-fluid {
+      padding: 30px;
+    }
+    
+    /* Styling for the caption (figcaption) */
+  .categories figcaption {
+      height: 35px;
+      font-weight: 700;
+      font-size: 18px;
+      color: #05442E;
+  }
+  .categories p {
+      height: 35px;
+      font-weight: 700;
+      font-size: 28px;
+      color: #05442E;
+  }
+
+  /* review board */
+  .board{
+      background: #EDFAF6;
+  }
+
+  .board .top{
+      font-weight: 700;
+      font-size: 28px;
+      color: #05442E;
+  }
+
+  /* services */
+  .service{
+      background-color: #ffffff;
+  }
+  .service .container-fluid{
+      height: 599px;
+      background-color: #ffffff;
+  }
+
+  .service .top p{
+      color: #05442E;
+      font-size: 28px;
+      font-weight: 700;
+  }
+
+  .service .row{
+      height: 514px;
+  }
+
+  /* .service .row .trophy img{
+      position: relative;
+      height: 133px;
+      width: 133px;
+      top: 9.5px;
+      left: 9.5px;
+  } */
+
+  .service .trophy{
+      background-image: url('images/trophy.png');
+      /* background-size: cover; */
+      background-repeat: no-repeat;
+      background-position: left;
+      padding: 50px;
+      font-weight: 700;
+      font-size: 48px;
+      color: #05442E;
+
+  }
+
+  .service .row  p .comment{
+      font-weight: 500;
+      font-size: 18px;
+  }
+
+  .service .row .name p{
+      font-size: 18px;
+      font-weight: 700;
+      color: #05442E;
+  }
+
+  .service .imagee {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      
+      /* border: 1px solid #ccc;  */
+    }
+
+    .imagee img {
+      position: absolute;
+    }
+
+    .right-image {
+      right: 0;
+    }
+
+    .center-image {
+      transform: translateX(-50%);
+      margin-top: 82px;
+      /* width: 592px;
+      height: 344px;
+      top: 82px; */
+    }
+
+  /* review */
+  .review{
+      /* height: 647px; */
+      background-color: #C0EFE3;
+  }
+
+  .review .top{
+      font-size: 28px;
+      font-weight: 700;
+      color: #05442E;
+  }
+
+  .review .comment{
+      font-size: 18px;
+      font-weight: 500;
+      color: #233300;
+  }
+
+  .review .form{
+      /* height: 407px; */
+      padding: 30px 60px 30px 60px;
+      outline: none;
+      border-color: #C0EFE3;
+  }
+
+  /* ::-webkit-scrollbar{
+      display: none;
+  } */
+
+  .form-control:focus {
+      border-color: #C0EFE3; /* Set the border color to the default Bootstrap color */
+      box-shadow: none; /* Remove box shadow */
+      outline: none; /* Remove outline */
+  }
+
+  .review button{
+      background-color: #00B67A;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 18px;
+      padding: 10px 10px;
+      margin-bottom: 30px;
+      margin-left: 60px;
+  }
+  .review button:focus{
+      border-color: #C0EFE3;
+      box-shadow: none; /* Remove box shadow */
+      outline: none; /* Remove outline */
+  }
+
+  /* footer */
+  footer{
+      padding: 47px 109px 47px 109px;
+      background-color: #00120C;
+  }
+
+  footer .logo{
+      font-size: 28px;
+      font-weight: 700;
+      color: #00B67A;
+  }
+
+  footer .logopp{
+      font-weight: 600;
+      font-size: 18px;
+  }
+
+  footer .logop{
+      font-weight: 300;
+      font-size: 14px;
+  }
+
+  footer .logop a{
+      text-decoration: none;
+      font-weight: 300;
+      font-size: 14px;
+      color: #ffffff;
+  }
+
+  footer hr{
+      color: #00B67A;
+  }
+
+  footer ul li{
+      text-decoration: none;
+  }
+  /* footer done */
+
+  .cat .top{
+    font-size: 28px;
+    font-weight: 700;
+    color: #05442E;
+    }
+    .cat form{
+        height: 61px;
+        width: 600px;
+        border-radius: 4px;
+        border: 1px;
+        padding: 13px 12px;
+        color: #EEEEEE;
+    }
+    .category .row figure {
+        border: 1px solid;
+        padding: 40px 60px 40px 60px;
+        color: #000000;
+        font-weight: 700;
+        line-height: 22.63px;
+        background: #DAF4EC;
+        transition: background 1s ease;
+    }
+    
+    .category .row figure:hover {
+        background: #EDFAF6;
+        cursor: pointer;
+    }
+    .category .card{
+        border-radius: 20px;
+    }
+    .category figcaption {
+        height: 35px;
+        font-weight: 700;
+        font-size: 18px;
+        color: #05442E;
+    }
+    .category .card-img-top figure{
+        border-radius: 20px 20px 0px 0px;
+        border: 1px #05442E;
+    }
+    .category a{
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        color: #000000;
+    }
+    .category .card-body{
+        border: 1px #EEEEEE;
+    }
+        /* details page */
+    .detail-top{
+        background-color: #F8F8F8;
+    }
+
+    .detail-top .side a .btn{
+        outline: 1px #00B67A;
+        width: 200px;
+        padding: 10px 10px;
+        background-color: #EDFAF6;
+        border-radius: 8px;
+        color: #00B67A;
+        justify-content: center;
+    }
+
+    .detail-top .top .card img{
+        height: 275px;
+    }
+    .detail-top .top .card .card-title{
+        font-size: 48px;
+        font-weight: 700;
+        color: #05442E;
+    }
+    .detail-top .top .card .fa-star{
+        font-size: xx-large;
+        color: #00B67A;
+    }
+
+    /* detail header */
+    .detail .header .card-body{
+        background-color: red;
+        border: 10px #B0B0B0;
+        /* padding: 30px 24px 30px 24px; */
+        border-radius: 10px;
+    }
+
+    .detail .header .review-card {
+        position: absolute;
+        background-color: #ffffff;
+        width: 199px;
+        height: 143px;
+        border: 1px #A9BAB5;
+    }
+
+    .detail .header .review-card img {
+        width: 21.75px;
+        height: 21.75px;
+        top: 16.31px;
+        left: 13.05px;
+        border-radius: 50%;
+    }
+
+    .detail .header .review-card-name {
+        position: absolute;
+        height: 6.49px;
+        top: 18.37px;
+        left: 43.64px;
+        color: #233300;
+        font-size: 10px; /* Adjust font size as needed */
+        font-weight: 700;
+    }
+
+    .detail .header .review-card-date {
+        position: absolute;
+        height: 4.75px;
+        top: 30.41px;
+        left: 43.28px;
+        color: #C3C9B7;
+        font-size: 8px; /* Adjust font size as needed */
+    }
+
+    .detail .header .review-card p{
+        position: absolute;
+        width: 170.3px;
+        height: 36.63px;
+        font-size: 10px;
+        top: 88.97px;
+        left: 13.4px;
+        color: #233300;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        line-height: 1.5; /* Adjust as needed */
+    }
+
+    .detail .header .review-card-content {
+        padding: 10px;
+    }
+
+    .detail .header .card{
+        width: 491px;
+        height: 271px;
+        background: none;
+        border: none;
+    }
+    .detail .header .card-footer{
+        border: none;
+        background: none;
+    }
+    .detail .header .card h2{
+        font-weight: 700;
+        size: 48px;
+        color: #05442E;
+    }
+    .detail .header .card p{
+        font-weight: 500;
+        size: 14px;
+        color: #05442E;
+    }
+    .detail .row .first{
+        margin-top: 0;
+    }
+    .detail .review-card{
+        background-color: whitesmoke;
+    }
+    .detail .review-card img{
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+    }
+    .detail .review-card .review-card-name{
+        color: #001911;
+        font-size: 24px;
+        font-weight: 700;
+    }
+    .detail .review-card .review-card-date{
+        color: #AAAAAA;
+        font-size: 16px;
+        font-weight: 400;
+    }
+    .detail .review-card .review-review{
+        color: #001911;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    
+    /* details page done */
+</style>
+{% endblock %}
+
+<!-- header  -->
+{% block header %} {% include 'header.html' %}{% endblock header %}
+<!-- header  -->
+
+{% block content %}
+<section class="detail-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-xl-6  mt-5 mb-5 top">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="{{detail.image.url}}" class="img-fluid rounded-start py-2 px-2" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title">{{detail.name|title}}</h5>
+                          {% comment %} <p class="card-text"><small class="text-muted">64K Reviews</small></p>
+                          <span><i class="fa-regular fa-star"></i></span><span><i class="fa-regular fa-star"></i></span><span><i class="fa-regular fa-star"></i></span><span><i class="fa-regular fa-star"></i></span><span><i class="fa-regular fa-star"></i></span> {% endcomment %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="col-12 col-xl-6 text-center mt-5 mb-5 side">
+                <div>
+                    <div class="text-success" style="font-weight: 700;">Contact Us: </div>
+                </div>
+                <div class="number">
+                    <a href="tel:{{ detail.phone }}"><button type="button" class="btn btn-outline-success mt-2"><i class="fa-solid fa-phone me-2"></i>{{detail.phone|title}}</button></a>
+                </div>
+                <div class="website mt-2">
+                    <a href="{{ detail.website }}"><button type="button" class="btn btn-outline-success"><i class="fa-solid fa-link me-2"></i>{{detail.website}}</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="container detail mt-3">
+    <div class="row mt-3">
+       {% comment %} <div class="col-12 col-xl-6 first">
+           <form action="" method="post">
+            {% csrf_token %}
+               <div class="input-group">
+                   <input type="text" class="form-control" placeholder="Enter your review" aria-label="Recipient's username" aria-describedby="button-addon2">
+                   <button class="btn btn-outline-secondary" type="button" id="button-addon2">Submit</button>
+               </div> 
+           </form>
+       </div> {% endcomment %}
+
+       <div class="col-12 col-xl-6 first">
+        <form action="{% url 'submit_review' detail.id %}" method="post">
+            {% csrf_token %}
+            <div class="input-group py-2">
+                <textarea class="form-control" name="review" placeholder="Enter your review" aria-label="Review" aria-describedby="button-addon2"></textarea>
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Submit</button>
+            </div> 
+        </form>
+      </div>
+    
+  
+       <div class="col-12 col-xl-6">
+        <div class="row mt-3 mb-3 px-5">
+            <div class="col-12 col-xl-4">
+                <p>Service :</p>
+                <p class=""><small class="text-muted">{{ detail.category }}</small></p>
+            </div>
+            <div class="col-12 col-xl-4">
+                <p>Ranking :</p>
+                <p class=""><small class="text-muted">{{ detail.id }}</small></p>
+            </div>
+            <div class="col-12 col-xl-4">
+                <p>Location :</p>
+                <p class=""><small class="text-muted">{{ detail.city }}, {{ detail.state }}</small></p>
+            </div>
+        </div>
+    </div>
+   </div>
+
+   <div class="row mt-3 mb-3">
+    <div class="col-12 col-xl-6 first">
+        <div class="review-card px-3 py-3">
+            <div class="review-card-name">About</div>
+            <div><p class="mt-2">{{ detail.description }}
+            </p></div>
+            <div class="card-footer"><p>{{ detail.name }}</p></div>
+            
+            <div class="review-card-content">
+              
+            </div>
+          </div>
+    </div>
+
+    <div class="col-12 col-xl-6">
+        <div class="review-card bg-white">
+            <div><p class=""><iframe
+                width="550"
+                height="450"
+                style="border:0"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD_nB8o-0jo4gKp-Bt9v6ff1y35Qxvd5g0&q=Space+Needle,{{ detail.address }}">
+              </iframe></p></div>
+            
+            <div class="review-card-content">
+              
+            </div>
+          </div>
+    </div>
+</div>
+  
+   <div class="row mb-3">
+    {% for review in reviews %}
+    <div class="col-12 col-xl-6 mb-3 mt-3">
+        <div class="review-card px-3 py-3">
+            {% comment %} <img src="{{ review.user.profile_picture.url }}" alt="..."> {% endcomment %}
+            <span class="review-card-name">{{ review.user.username }}</span>
+            <div class="review-card-date"><small>{{ review.created_at }}</small></div>
+            <div><p class="review-review">{{ review.comment }}</p></div>
+        </div>
+    </div>
+    {% endfor %}
+   </div>
+
+   </div>
+  
+   </div>
+
+
+  </section>
+  
+{% endblock content %}
+
+
+
+
+<!--- footer -->
+{% block footer %} {% include 'footer.html' %}{% endblock footer %}
+<!--- footer done -->

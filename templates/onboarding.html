@@ -1,0 +1,543 @@
+{% extends 'base.html' %}
+
+{% block title %}Onboarding{% endblock %}
+
+{% block styles %}
+<style>
+    *{
+      margin: 0;
+      padding: 0;
+  }
+
+  /* navbar */
+  .connect{
+      background-color: #00B67A;
+      height: 72px;
+      padding: 17px 50px 17px 50px;
+      gap: 1278px;
+  }
+
+  .connect .navbar-brand{
+      font-weight: 700;
+      size: 28px;
+      color: #ffffff;
+      line-height: 33.6px;
+  }
+
+  .connect .nav-item{
+      font-weight: 700;
+      line-height: 17.6px;
+      color: #00B67A;
+      background: #ffffff;
+      letter-spacing: -0.17px;
+  }
+  .connect .nav-item:hover{
+      font-weight: 700;
+      line-height: 17.6px;
+      color: #ffffff;
+      background: #ffffff;
+      letter-spacing: -0.17px;
+  }
+
+  .connect .nav-link{
+      font-weight: 700;
+      line-height: 17.6px;
+      color: #ffffff;
+      letter-spacing: -0.17px;
+  }
+  .connect .nav-link:hover{
+      font-weight: 700;
+      line-height: 17.6px;
+      color: #ffffff;
+      background: #00b6793b;
+      letter-spacing: -0.17px;
+  }
+  .connect .navbar-nav a{
+      text-decoration: none;
+      color: #ffffff;
+  }
+
+
+  /* showcase */
+  .showcase .carousel-caption h5{
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 40px;
+  }
+  .showcase .carousel-caption p{
+      color: #ffffff;
+      font-weight: 500;
+  }
+
+  /* header */
+  .header{
+      height: 530px;
+      background-color:#EDFAF6;
+      overflow: hidden;
+  }
+
+  .header .row{
+      height: 271px;
+  }
+
+  .header .row h3{
+      font-weight: 700;
+  }
+
+  .header .background-image {
+      position: relative;
+      width: 700px;
+      height: 367.05px;
+      top: 73px;
+      background: #D9D9D9;
+  }
+
+  .header .review-card {
+      position: absolute;
+      background-color: #ffffff;
+      width: 199px;
+      height: 143px;
+      border: 1px #A9BAB5;
+  }
+
+  .header .review-card img {
+      width: 21.75px;
+      height: 21.75px;
+      top: 16.31px;
+      left: 13.05px;
+      border-radius: 50%;
+  }
+
+  .header .review-card-name {
+      position: absolute;
+      height: 6.49px;
+      top: 18.37px;
+      left: 43.64px;
+      color: #233300;
+      font-size: 10px; /* Adjust font size as needed */
+      font-weight: 700;
+  }
+
+  .header .review-card-date {
+      position: absolute;
+      height: 4.75px;
+      top: 30.41px;
+      left: 43.28px;
+      color: #C3C9B7;
+      font-size: 8px; /* Adjust font size as needed */
+  }
+
+  .header .review-card-company {
+      position: absolute;
+      height: 8.44px;
+      top: 51.61px;
+      left: 13.45px;
+      color: #233300;
+      font-weight: 700; /* Adjust font size as needed */
+  }
+
+  .header .review-card p{
+      position: absolute;
+      width: 170.3px;
+      height: 36.63px;
+      font-size: 10px;
+      top: 88.97px;
+      left: 13.4px;
+      color: #233300;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+      line-height: 1.5; /* Adjust as needed */
+  }
+
+  .header .review-card-content {
+      padding: 10px;
+  }
+
+  .header .review-card:nth-child(1) {
+      top: 22px;
+      left: 299px;
+  }
+
+  .header .review-card:nth-child(2) {
+      top: 437px;
+      left: 600px;
+      /* bottom right */
+  }
+
+  .header .review-card:nth-child(3) {
+      top: 243px;
+      left: 10px;
+      /* top left */
+  }
+
+  .header .review-card:nth-child(4) {
+      top: 110px;
+      left: 600px;
+      /* top right */
+  }
+
+  .header .card{
+      width: 491px;
+      height: 271px;
+      top: 126.5px;
+      left: 110px;
+      background: none;
+      border: none;
+  }
+  .header .card-footer{
+      border: none;
+      background: none;
+  }
+  .header .card h2{
+      font-weight: 700;
+      size: 48px;
+      color: #05442E;
+  }
+  .header .card p{
+      font-weight: 500;
+      size: 14px;
+      color: #05442E;
+  }
+
+  /* categories */
+  .categories .row figure {
+      border: 1px solid;
+      padding: 40px 60px 40px 60px;
+      color: #000000;
+      font-weight: 700;
+      line-height: 22.63px;
+      background: #ffffff;
+      transition: background 1s ease;
+    }
+    
+    .categories .row figure:hover {
+      background: #EDFAF6;
+      cursor: pointer;
+  }
+    /* Styling for the container */
+    .categories .container-fluid {
+      padding: 30px;
+    }
+    
+    /* Styling for the caption (figcaption) */
+  .categories figcaption {
+      height: 35px;
+      font-weight: 700;
+      font-size: 18px;
+      color: #05442E;
+  }
+  .categories p {
+      height: 35px;
+      font-weight: 700;
+      font-size: 28px;
+      color: #05442E;
+  }
+
+  /* review board */
+  .board{
+      background: #EDFAF6;
+  }
+
+  .board .top{
+      font-weight: 700;
+      font-size: 28px;
+      color: #05442E;
+  }
+
+  /* services */
+  .service{
+      background-color: #ffffff;
+  }
+  .service .container-fluid{
+      height: 599px;
+      background-color: #ffffff;
+  }
+
+  .service .top p{
+      color: #05442E;
+      font-size: 28px;
+      font-weight: 700;
+  }
+
+  .service .row{
+      height: 514px;
+  }
+
+  /* .service .row .trophy img{
+      position: relative;
+      height: 133px;
+      width: 133px;
+      top: 9.5px;
+      left: 9.5px;
+  } */
+
+  .service .trophy{
+      background-image: url('images/trophy.png');
+      /* background-size: cover; */
+      background-repeat: no-repeat;
+      background-position: left;
+      padding: 50px;
+      font-weight: 700;
+      font-size: 48px;
+      color: #05442E;
+
+  }
+
+  .service .row  p .comment{
+      font-weight: 500;
+      font-size: 18px;
+  }
+
+  .service .row .name p{
+      font-size: 18px;
+      font-weight: 700;
+      color: #05442E;
+  }
+
+  
+  .service .imagee img {
+    width: 600px;
+    height: 400px;
+    
+  }
+
+
+  /* review */
+  .review{
+      /* height: 647px; */
+      background-color: #C0EFE3;
+  }
+
+  .review .top{
+      font-size: 28px;
+      font-weight: 700;
+      color: #05442E;
+  }
+
+  .review .comment{
+      font-size: 18px;
+      font-weight: 500;
+      color: #233300;
+  }
+
+  .review .form{
+      /* height: 407px; */
+      padding: 30px 60px 30px 60px;
+      outline: none;
+      border-color: #C0EFE3;
+  }
+
+  /* ::-webkit-scrollbar{
+      display: none;
+  } */
+
+  .form-control:focus {
+      border-color: #C0EFE3; /* Set the border color to the default Bootstrap color */
+      box-shadow: none; /* Remove box shadow */
+      outline: none; /* Remove outline */
+  }
+
+  .review button{
+      background-color: #00B67A;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 18px;
+      padding: 10px 10px;
+      margin-bottom: 30px;
+      margin-left: 60px;
+  }
+  .review button:focus{
+      border-color: #C0EFE3;
+      box-shadow: none; /* Remove box shadow */
+      outline: none; /* Remove outline */
+  }
+
+  /* footer */
+  footer{
+      padding: 47px 109px 47px 109px;
+      background-color: #00120C;
+  }
+
+  footer .logo{
+      font-size: 28px;
+      font-weight: 700;
+      color: #00B67A;
+  }
+
+  footer .logopp{
+      font-weight: 600;
+      font-size: 18px;
+  }
+
+  footer .logop{
+      font-weight: 300;
+      font-size: 14px;
+  }
+
+  footer .logop a{
+      text-decoration: none;
+      font-weight: 300;
+      font-size: 14px;
+      color: #ffffff;
+  }
+
+  footer hr{
+      color: #00B67A;
+  }
+
+  footer ul li{
+      text-decoration: none;
+  }
+    .onboarding{
+        color: #00B67A;
+        font-weight: 700;
+        font-family: 68px;
+    }
+    .onboarding a{
+        color: #00B67A;
+        font-weight: 700;
+        font-size: 68px;
+        text-decoration: none;
+        line-height: 81.6px;
+    }
+    .onboarding .card{
+        background-color: #EDFAF6;
+        border: 1px #68B59C;
+    }
+    .onboarding .card .card-title{
+        color: #05442E;
+        font-weight: 600;
+        font-size: 20px;
+    }
+    .onboarding .card .card-text{
+        color: #738D87;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 20.11px;
+    }
+  /* footer done */
+</style>
+{% endblock %}
+{% block content %}
+<div class="container onboarding justify-content-center">
+    <div class="row">
+        <div class="col-12 col-xl-2"></div>
+        <div class="col-12 col-xl-8 text-center">
+            <div><a href="index.html"><p>Service Connect</p></a></div>
+            <div class="row mt-3">
+                {% if error_message %}
+                <div class="alert alert-danger" role="alert">{{ error_message }}</div>
+                {% endif %}
+                <form class="row g-2" method="post">
+                    {% csrf_token %}
+                    <div class="col-md-6">
+                      <label for="inputEmail4" class="form-label">Service Name</label>
+                      <input type="text" class="form-control" id="inputText4" name="username">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="inputEmail4" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="inputEmail4" name="email">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="inputPassword4" class="form-label">Password</label>
+                      <input type="password" class="form-control" id="inputPassword4" name="password1">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="inputPassword4" class="form-label">Confirm Password</label>
+                      <input type="password" class="form-control" id="inputPassword4" name="password2">
+                    </div>
+                    <div class="col-md-8">
+                      <label for="inputAddress" class="form-label">Address</label>
+                      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address">
+                    </div>
+                    <div class="col-md-4">
+                      <label for="inputCategory" class="form-label">Category</label>
+                      <select id="inputCategory" class="form-select">
+                        <option selected>Choose...</option>
+                        <option>Domestic Services</option>
+                        <option>Tech Services</option>
+                        <option>Social Events</option>
+                        <option>Catering</option>
+                        <option>Hair Services</option>
+                        <option>Automobile Services</option>
+                        <option>Beauty & Spas</option>
+                        <option>More</option>
+                    </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="inputAddress2" class="form-label">Description</label>
+                      <input type="text" class="form-control" id="inputDescription" placeholder="Describe your service">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="image" class="form-label">Image</label>
+                      <input type="file" class="form-control" id="inputImage" placeholder="">
+                    </div>
+                    <div class="col-md-3">
+                      <label for="inputCity" class="form-label">City</label>
+                      <input type="text" class="form-control" id="inputCity">
+                    </div>
+                    <div class="col-md-4">
+                      <label for="inputCity" class="form-label">Phone number</label>
+                      <input type="text" class="form-control" id="inputCity" placeholder="+234...">
+                    </div>
+                    <div class="col-md-3">
+                      <label for="inputState" class="form-label">State</label>
+                      <select id="inputState" class="form-select">
+                        <option selected>Choose...</option>
+                        <option>Abia</option>
+                        <option>Adamawa</option>
+                        <option>Akwa Ibom</option>
+                        <option>Anambra</option>
+                        <option>Bauchi</option>
+                        <option>Bayelsa</option>
+                        <option>Benue</option>
+                        <option>Borno</option>
+                        <option>Cross River</option>
+                        <option>Delta</option>
+                        <option>Ebonyi</option>
+                        <option>Edo</option>
+                        <option>Ekiti</option>
+                        <option>Enugu</option>
+                        <option>Gombe</option>
+                        <option>Imo</option>
+                        <option>Jigawa</option>
+                        <option>Kaduna</option>
+                        <option>Kano</option>
+                        <option>Katsina</option>
+                        <option>Kebbi</option>
+                        <option>Kogi</option>
+                        <option>Kwara</option>
+                        <option>Lagos</option>
+                        <option>Nasarawa</option>
+                        <option>Niger</option>
+                        <option>Ogun</option>
+                        <option>Ondo</option>
+                        <option>Osun</option>
+                        <option>Oyo</option>
+                        <option>Plateau</option>
+                        <option>Rivers</option>
+                        <option>Sokoto</option>
+                        <option>Taraba</option>
+                        <option>Yobe</option>
+                        <option>Zamfara</option>
+                        <option>Federal Capital Territory (FCT)</option>
+                    </select>
+                    </div>
+                    <div class="col-md-2">
+                      <label for="inputZip" class="form-label">Zip</label>
+                      <input type="text" class="form-control" id="inputZip">
+                    </div>
+                    <div class="col-12">
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-success py-2 px-5">Onboard</button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+        <div class="col-12 col-xl-2"></div>
+    </div>
+</div>
+{% endblock %}

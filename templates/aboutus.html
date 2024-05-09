@@ -1,0 +1,680 @@
+{% extends 'base.html' %}
+
+{% block title %} {{cat_title.cat_name|title}}  {% endblock title %}
+
+{% block styles %}
+<style>
+    *{
+      margin: 0;
+      padding: 0;
+  }
+
+  /* navbar */
+  .connect{
+      background-color: #00B67A;
+      height: 72px;
+      padding: 17px 50px 17px 50px;
+      gap: 1278px;
+  }
+
+  .connect .navbar-brand{
+      font-weight: 700;
+      size: 28px;
+      color: #ffffff;
+      line-height: 33.6px;
+  }
+
+  .connect .nav-item{
+      font-weight: 700;
+      line-height: 17.6px;
+      color: #00B67A;
+      background: #ffffff;
+      letter-spacing: -0.17px;
+  }
+  .connect .nav-item:hover{
+      font-weight: 700;
+      line-height: 17.6px;
+      color: #ffffff;
+      background: #ffffff;
+      letter-spacing: -0.17px;
+  }
+
+  .connect .nav-link{
+      font-weight: 700;
+      line-height: 17.6px;
+      color: #ffffff;
+      letter-spacing: -0.17px;
+  }
+  .connect .nav-link:hover{
+      font-weight: 700;
+      line-height: 17.6px;
+      color: #ffffff;
+      background: #00b6793b;
+      letter-spacing: -0.17px;
+  }
+  .connect .navbar-nav a{
+      text-decoration: none;
+      color: #ffffff;
+  }
+
+
+  /* showcase */
+  .showcase .carousel-caption h5{
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 40px;
+  }
+  .showcase .carousel-caption p{
+      color: #ffffff;
+      font-weight: 500;
+  }
+
+  /* header */
+  .header{
+      height: 530px;
+      background-color:#EDFAF6;
+      overflow: hidden;
+  }
+
+  .header .row{
+      height: 271px;
+  }
+
+  .header .row h3{
+      font-weight: 700;
+  }
+
+  .header .background-image {
+      position: relative;
+      width: 700px;
+      height: 367.05px;
+      top: 73px;
+      background: #D9D9D9;
+  }
+
+  .header .review-card {
+      position: absolute;
+      background-color: #ffffff;
+      width: 199px;
+      height: 143px;
+      border: 1px #A9BAB5;
+  }
+
+  .header .review-card img {
+      width: 21.75px;
+      height: 21.75px;
+      top: 16.31px;
+      left: 13.05px;
+      border-radius: 50%;
+  }
+
+  .header .review-card-name {
+      position: absolute;
+      height: 6.49px;
+      top: 18.37px;
+      left: 43.64px;
+      color: #233300;
+      font-size: 10px; /* Adjust font size as needed */
+      font-weight: 700;
+  }
+
+  .header .review-card-date {
+      position: absolute;
+      height: 4.75px;
+      top: 30.41px;
+      left: 43.28px;
+      color: #C3C9B7;
+      font-size: 8px; /* Adjust font size as needed */
+  }
+
+  .header .review-card-company {
+      position: absolute;
+      height: 8.44px;
+      top: 51.61px;
+      left: 13.45px;
+      color: #233300;
+      font-weight: 700; /* Adjust font size as needed */
+  }
+
+  .header .review-card p{
+      position: absolute;
+      width: 170.3px;
+      height: 36.63px;
+      font-size: 10px;
+      top: 88.97px;
+      left: 13.4px;
+      color: #233300;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+      line-height: 1.5; /* Adjust as needed */
+  }
+
+  .header .review-card-content {
+      padding: 10px;
+  }
+
+  .header .review-card:nth-child(1) {
+      top: 22px;
+      left: 299px;
+  }
+
+  .header .review-card:nth-child(2) {
+      top: 437px;
+      left: 600px;
+      /* bottom right */
+  }
+
+  .header .review-card:nth-child(3) {
+      top: 243px;
+      left: 10px;
+      /* top left */
+  }
+
+  .header .review-card:nth-child(4) {
+      top: 110px;
+      left: 600px;
+      /* top right */
+  }
+
+  .header .card{
+      width: 491px;
+      height: 271px;
+      top: 126.5px;
+      left: 110px;
+      background: none;
+      border: none;
+  }
+  .header .card-footer{
+      border: none;
+      background: none;
+  }
+  .header .card h2{
+      font-weight: 700;
+      size: 48px;
+      color: #05442E;
+  }
+  .header .card p{
+      font-weight: 500;
+      size: 14px;
+      color: #05442E;
+  }
+
+  /* categories */
+  .categories .row figure {
+      border: 1px solid;
+      padding: 40px 60px 40px 60px;
+      color: #000000;
+      font-weight: 700;
+      line-height: 22.63px;
+      background: #ffffff;
+      transition: background 1s ease;
+    }
+    
+    .categories .row figure:hover {
+      background: #EDFAF6;
+      cursor: pointer;
+  }
+    /* Styling for the container */
+    .categories .container-fluid {
+      padding: 30px;
+    }
+    
+    /* Styling for the caption (figcaption) */
+  .categories figcaption {
+      height: 35px;
+      font-weight: 700;
+      font-size: 18px;
+      color: #05442E;
+  }
+  .categories p {
+      height: 35px;
+      font-weight: 700;
+      font-size: 28px;
+      color: #05442E;
+  }
+
+  /* review board */
+  .board{
+      background: #EDFAF6;
+  }
+
+  .board .top{
+      font-weight: 700;
+      font-size: 28px;
+      color: #05442E;
+  }
+
+  /* services */
+  .service{
+      background-color: #ffffff;
+  }
+  .service .container-fluid{
+      height: 599px;
+      background-color: #ffffff;
+  }
+
+  .service .top p{
+      color: #05442E;
+      font-size: 28px;
+      font-weight: 700;
+  }
+
+  .service .row{
+      height: 514px;
+  }
+
+  /* .service .row .trophy img{
+      position: relative;
+      height: 133px;
+      width: 133px;
+      top: 9.5px;
+      left: 9.5px;
+  } */
+
+  .service .trophy{
+      background-image: url('images/trophy.png');
+      /* background-size: cover; */
+      background-repeat: no-repeat;
+      background-position: left;
+      padding: 50px;
+      font-weight: 700;
+      font-size: 48px;
+      color: #05442E;
+
+  }
+
+  .service .row  p .comment{
+      font-weight: 500;
+      font-size: 18px;
+  }
+
+  .service .row .name p{
+      font-size: 18px;
+      font-weight: 700;
+      color: #05442E;
+  }
+
+  .service .imagee {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      
+      /* border: 1px solid #ccc;  */
+    }
+
+    .imagee img {
+      position: absolute;
+    }
+
+    .right-image {
+      right: 0;
+    }
+
+    .center-image {
+      transform: translateX(-50%);
+      margin-top: 82px;
+      /* width: 592px;
+      height: 344px;
+      top: 82px; */
+    }
+
+  /* review */
+  .review{
+      /* height: 647px; */
+      background-color: #C0EFE3;
+  }
+
+  .review .top{
+      font-size: 28px;
+      font-weight: 700;
+      color: #05442E;
+  }
+
+  .review .comment{
+      font-size: 18px;
+      font-weight: 500;
+      color: #233300;
+  }
+
+  .review .form{
+      /* height: 407px; */
+      padding: 30px 60px 30px 60px;
+      outline: none;
+      border-color: #C0EFE3;
+  }
+
+  /* ::-webkit-scrollbar{
+      display: none;
+  } */
+
+  .form-control:focus {
+      border-color: #C0EFE3; /* Set the border color to the default Bootstrap color */
+      box-shadow: none; /* Remove box shadow */
+      outline: none; /* Remove outline */
+  }
+
+  .review button{
+      background-color: #00B67A;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 18px;
+      padding: 10px 10px;
+      margin-bottom: 30px;
+      margin-left: 60px;
+  }
+  .review button:focus{
+      border-color: #C0EFE3;
+      box-shadow: none; /* Remove box shadow */
+      outline: none; /* Remove outline */
+  }
+
+  /* footer */
+  footer{
+      padding: 47px 109px 47px 109px;
+      background-color: #00120C;
+  }
+
+  footer .logo{
+      font-size: 28px;
+      font-weight: 700;
+      color: #00B67A;
+  }
+
+  footer .logopp{
+      font-weight: 600;
+      font-size: 18px;
+  }
+
+  footer .logop{
+      font-weight: 300;
+      font-size: 14px;
+  }
+
+  footer .logop a{
+      text-decoration: none;
+      font-weight: 300;
+      font-size: 14px;
+      color: #ffffff;
+  }
+
+  footer hr{
+      color: #00B67A;
+  }
+
+  footer ul li{
+      text-decoration: none;
+  }
+  /* footer done */
+
+  .cat .top{
+    font-size: 28px;
+    font-weight: 700;
+    color: #05442E;
+    }
+    .cat form{
+        height: 61px;
+        width: 600px;
+        border-radius: 4px;
+        border: 1px;
+        padding: 13px 12px;
+        color: #EEEEEE;
+    }
+    .category .row figure {
+        border: 1px solid;
+        padding: 40px 60px 40px 60px;
+        color: #000000;
+        font-weight: 700;
+        line-height: 22.63px;
+        background: #DAF4EC;
+        transition: background 1s ease;
+    }
+    
+    .category .row figure:hover {
+        background: #EDFAF6;
+        cursor: pointer;
+    }
+    .category .card{
+        border-radius: 20px;
+    }
+    .category figcaption {
+        height: 35px;
+        font-weight: 700;
+        font-size: 18px;
+        color: #05442E;
+    }
+    .category .card-img-top figure{
+        border-radius: 20px 20px 0px 0px;
+        border: 1px #05442E;
+    }
+    .category a{
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        color: #000000;
+    }
+    .category .card-body{
+        border: 1px #EEEEEE;
+    }
+        /* details page */
+    .detail-top{
+        background-color: #F8F8F8;
+    }
+
+    .detail-top .side a .btn{
+        outline: 1px #00B67A;
+        width: 200px;
+        padding: 10px 10px;
+        background-color: #EDFAF6;
+        border-radius: 8px;
+        color: #00B67A;
+        justify-content: center;
+    }
+
+    .detail-top .top .card img{
+        height: 275px;
+    }
+    .detail-top .top .card .card-title{
+        font-size: 48px;
+        font-weight: 700;
+        color: #05442E;
+    }
+    .detail-top .top .card .fa-star{
+        font-size: xx-large;
+        color: #00B67A;
+    }
+
+    /* detail header */
+    .detail .header .card-body{
+        background-color: red;
+        border: 10px #B0B0B0;
+        /* padding: 30px 24px 30px 24px; */
+        border-radius: 10px;
+    }
+
+    .detail .header .review-card {
+        position: absolute;
+        background-color: #ffffff;
+        width: 199px;
+        height: 143px;
+        border: 1px #A9BAB5;
+    }
+
+    .detail .header .review-card img {
+        width: 21.75px;
+        height: 21.75px;
+        top: 16.31px;
+        left: 13.05px;
+        border-radius: 50%;
+    }
+
+    .detail .header .review-card-name {
+        position: absolute;
+        height: 6.49px;
+        top: 18.37px;
+        left: 43.64px;
+        color: #233300;
+        font-size: 10px; /* Adjust font size as needed */
+        font-weight: 700;
+    }
+
+    .detail .header .review-card-date {
+        position: absolute;
+        height: 4.75px;
+        top: 30.41px;
+        left: 43.28px;
+        color: #C3C9B7;
+        font-size: 8px; /* Adjust font size as needed */
+    }
+
+    .detail .header .review-card p{
+        position: absolute;
+        width: 170.3px;
+        height: 36.63px;
+        font-size: 10px;
+        top: 88.97px;
+        left: 13.4px;
+        color: #233300;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        line-height: 1.5; /* Adjust as needed */
+    }
+
+    .detail .header .review-card-content {
+        padding: 10px;
+    }
+
+    .detail .header .card{
+        width: 491px;
+        height: 271px;
+        background: none;
+        border: none;
+    }
+    .detail .header .card-footer{
+        border: none;
+        background: none;
+    }
+    .detail .header .card h2{
+        font-weight: 700;
+        size: 48px;
+        color: #05442E;
+    }
+    .detail .header .card p{
+        font-weight: 500;
+        size: 14px;
+        color: #05442E;
+    }
+    /* details page done */
+    .about header h1{
+        color: #001911;
+        font-weight: 700;
+    }
+    #mission h2{
+        color: #001911;
+        font-weight: 700;
+        font-size: 24px;
+    }
+    #who-we-are h2{
+        color: #001911;
+        font-weight: 700;
+        font-size: 24px;
+    }
+    #our-values h2{
+        color: #001911;
+        font-weight: 700;
+        font-size: 24px;
+    }
+    #our-values ul{
+        list-style: none;
+    }
+    #why-choose-us h2{
+        color: #001911;
+        font-weight: 700;
+        font-size: 24px;
+    }
+    #why-choose-us ul{
+        list-style: none;
+    }
+    #get-in-touch h2{
+        color: #001911;
+        font-weight: 700;
+        font-size: 24px;
+    }
+    #get-in-touch ul{
+        list-style: none;
+    }
+</style>
+{% endblock %}
+
+<!-- header  -->
+{% block header %} {% include 'header.html' %}{% endblock header %}
+
+
+{% block content %}
+<section class="container about">
+    <header class="text-center mt-5">
+      <!-- Add your header content here -->
+      <h1>About Us</h1>
+  </header>
+  
+  <main class="aboutus">
+    <div class="row">
+      <div class="col-12 col-xl-2"></div>
+      <div class="col-12 col-xl-8">
+        <section id="mission">
+          <h2>Our Mission</h2>
+          <p>
+              At <strong>Service Connect</strong>, we are dedicated to providing exceptional service and creating value for our customers. Our mission is to provide high-quality products, deliver outstanding customer service, etc.
+          </p>
+      </section>
+  
+      <section id="who-we-are">
+          <h2>Who We Are</h2>
+          <p>
+              <strong>Service Connect</strong> was founded in [2024] with a vision to bridge the gap between service providers and service seekers. Since then, we have grown into a trusted [industry] provider, serving customers across [locations in Nigeria].
+          </p>
+      </section>
+  
+      <section id="our-values">
+          <h2>Our Values</h2>
+          <ul>
+              <li><strong>Quality:</strong> We are committed to delivering products/services of the highest quality.</li>
+              <li><strong>Integrity:</strong> We conduct our business with honesty, transparency, and integrity.</li>
+              <li><strong>Customer Focus:</strong> Our customers are at the heart of everything we do. We strive to exceed their expectations.</li>
+              <li><strong>Innovation:</strong> We embrace innovation and continuously seek new ways to improve and evolve.</li>
+              <li><strong>Community:</strong> We believe in giving back to the communities we serve and supporting initiatives that make a positive impact.</li>
+          </ul>
+      </section>
+  
+      <section id="why-choose-us">
+          <h2>Why Choose Us?</h2>
+          <ul>
+              <li><strong>Expertise:</strong> Our team consists of experienced professionals who are experts in their respective fields.</li>
+              <li><strong>Exceptional Service:</strong> We prioritize customer satisfaction and go above and beyond to ensure our customers' needs are met.</li>
+              <li><strong>Reliability:</strong> You can count on us to deliver on our promises and meet deadlines.</li>
+              <li><strong>Custom Solutions:</strong> We understand that every customer is unique. That's why we offer personalized solutions tailored to your specific requirements.</li>
+          </ul>
+      </section>
+  
+      <section id="get-in-touch">
+          <h2>Get in Touch</h2>
+          <p>We'd love to hear from you! Whether you have a question, feedback, or are interested in our services, feel free to reach out to us.</p>
+          <ul>
+              <li><strong>Phone:</strong> [08105938812]</li>
+              <li><strong>Email:</strong> <a href="mailto:christopheramah1@gmail.com">christopheramah1@gmail.com</a></li>
+              <li><strong>Address:</strong> [Lagos, Nigeria]</li>
+          </ul>
+      </section>
+      </div>
+      <div class="col-12 col-xl-2"></div>
+    </div>
+  </main>
+  </section>
+  
+{% endblock content %}
+
+<!--- footer -->
+{% block footer %} {% include 'footer.html' %}{% endblock footer %}
+<!--- footer done -->

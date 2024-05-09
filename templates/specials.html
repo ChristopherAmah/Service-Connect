@@ -1,0 +1,31 @@
+<section class="service container">
+  <div class="text-center top">
+      <p>Service of the week</p>
+  </div>
+  <div class="container-fluid">
+      <div class="row">
+          {% if specials %}
+              {% for item in specials %}
+                  <div class="col-12 col-xl-6 col-lg-12 col-md-12 col-sm-12 px-5">
+                      <div class="trophy">
+                          <p>{{ item.name }}</p>
+                      </div>
+                      <div>
+                          <p class="comment">{{ item.description }}</p>
+                      </div>
+                      {% comment %} <div class="name">
+                          <p>{{ item.review.name }}</p>
+                      </div> {% endcomment %}
+                      <div>
+                          <a href="{% url 'detail' item.id %}" class="btn btn-success px-2 py-2" type="submit">Check them out</a>
+                      </div>
+                  </div>
+
+                  <div class="col-12 col-xl-6  py-5 gx-5 imagee d-none d-xl-block">
+                          <img src="{{ item.image.url }}" alt="" class="center-image">
+                  </div>
+              {% endfor %}
+          {% endif %}
+      </div>
+  </div>
+</section>
